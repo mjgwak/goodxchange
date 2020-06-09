@@ -7,6 +7,37 @@ import ItemExtend from './ItemExtend.jsx';
 import Upload from './Upload.jsx';
 import User from './User.jsx';
 import MyProfile from './MyProfile.jsx';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import Icon from '@material-ui/core/Icon';
+import HomeIcon from '@material-ui/icons/Home';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { spacing } from '@material-ui/system';
+import Box from '@material-ui/core/Box';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+
+
+const useStyles = makeStyles((theme) => ({
+  button: {
+    margin: theme.spacing(1),
+  },
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+}));
+
+const theme = {
+  spacing: value => value,
+}
+
 
 class App extends React.Component {
   constructor(props) {
@@ -127,6 +158,8 @@ class App extends React.Component {
     })
   }
 
+
+
 render() {
   if (this.state.page === 2) {
    return (
@@ -146,16 +179,21 @@ render() {
     )
   } else {
     return (
+      <Container maxWidth="sm" style={{ backgroundColor: '#cfe8fc'}}>
       <div>
-        <h1>
+        <Box textAlign="center" fontWeight="fontWeightBold" fontSize="h3.fontSize" fontFamily="fontFamily" letterSpacing={10} p={4}>
           GoodXchange
-        </h1>
-        <button type="button" onClick={this.handleHomeButton}>Home</button>
-        <button type="button" onClick={this.uploadButton}>Upload</button>
-        <button type="button" onClick={this.myProfileClicked}>My Profile</button><br/><br/>
+        </Box>
+        <div style={{ marginBottom: "20px" }}>
+          <span style={{ marginRight: "10px" }}>
+          <Button variant="contained" color="primary" startIcon={<HomeIcon />} type="button" onClick={this.handleHomeButton}>HOME</Button></span>
+          <span style={{ marginRight: "10px" }}><Button variant="contained" color="primary" startIcon={<CloudUploadIcon />} type="button" onClick={this.uploadButton}>Upload</Button></span>
+          <Button variant="contained" color="primary" startIcon={<AccountCircleIcon />} type="button" onClick={this.myProfileClicked}>My Profile</Button>
+        </div>
         <SearchFilter region={this.state.region} handleRegion={this.handleRegion} category={this.state.category} handleCategory={this.handleCategory}/>
         <ItemsList region={this.state.region} itemslist={this.state.allitems} handleClick={this.handleClick} category={this.state.category}/>
       </div>
+      </Container>
     )
   }
 }

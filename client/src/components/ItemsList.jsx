@@ -1,5 +1,7 @@
 import React from 'react';
 import Item from './Item.jsx';
+import Container from '@material-ui/core/Container';
+
 
 const ItemsList = (props) => {
   const list = props.region !== 'All' ? props.itemslist.filter(item => {
@@ -10,13 +12,11 @@ const ItemsList = (props) => {
   }) : list;
     return (
       <div>
-        <ul>
           {
             catList.map((item) => {
-              return <li key={item.itemId.toString()}><Item item={item} handleClick={props.handleClick}/></li>
+              return <span key={item.itemId.toString()}><Item item={item} handleClick={props.handleClick}/></span>
             })
           }
-        </ul>
       </div>
   );
 }

@@ -2,6 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import axios from 'axios';
+import Container from '@material-ui/core/Container';
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
+import HomeIcon from '@material-ui/icons/Home';
+import SaveAltIcon from '@material-ui/icons/SaveAlt';import Box from '@material-ui/core/Box';
+import { withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import IconButton from '@material-ui/core/IconButton';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+
+
+const theme = {
+  spacing: value => value,
+}
 
 class Upload extends React.Component {
   constructor(props) {
@@ -66,14 +80,29 @@ class Upload extends React.Component {
 
   render() {
     return (
+      <Container maxWidth="sm" style={{ backgroundColor: '#cfe8fc'}}>
       <div>
         <section>
         <div>
-          <button onClick={(e) => this.props.handleHomeButton(e)}>Home</button>
-          <h3>Upload Item</h3>
-          <span>Upload Picture 1/10</span><br/><br/>
+          <Box p={2}>
+            <Button variant="contained" color="primary" startIcon={<HomeIcon />} onClick={(e) => this.props.handleHomeButton(e)}>Home</Button>
+          </Box>
+          <Box textAlign="center" fontWeight="fontWeightBold" fontSize="h5.fontSize" fontFamily="fontFamily" letterSpacing={10} p={4}>Upload Item</Box>
         </div>
         <div>
+          {/* <input
+            accept="image/*"
+            multiple
+            type="file"
+          /> */}
+          {/* <input accept="image/*" type="file"/> */}
+          <label>
+            <IconButton color="primary" component="span">
+              <PhotoCamera />
+            </IconButton>
+          </label>
+        </div>
+        <Box fontFamily="fontFamily" fontSize="14px" mr={3}>
           <label>User ID:
             <input name="userId" value={this.state.userId} onChange={this.handleInputChange}/>
           </label><br/><br/>
@@ -83,11 +112,11 @@ class Upload extends React.Component {
           <label>Category:
             <select name="category" value={this.state.category} onChange={this.handleInputChange}>
               <option value="All">All</option>
-              <option value=" Furniture">Furniture</option>
-              <option value=" Home Appliance">Home Appliance</option>
-              <option value=" Beauty Products">Beauty Products</option>
-              <option value=" Clothes">Clothes</option>
-              <option value=" Accessories">Accessories</option>
+              <option value="Furniture">Furniture</option>
+              <option value="Home Appliance">Home Appliance</option>
+              <option value="Beauty Products">Beauty Products</option>
+              <option value="Clothes">Clothes</option>
+              <option value="Accessories">Accessories</option>
             </select>
           </label><br/><br/>
           <label>Price($):
@@ -99,11 +128,14 @@ class Upload extends React.Component {
           <label>Description:
             <input name="description" value={this.state.description} onChange={this.handleInputChange}/>
           </label>
-        </div>
+        </Box>
         </section><br/><br/>
-        <button onClick={(e) => this.saveClicked(e)}>Save</button>
+        <Box pb={3}>
+        <Button variant="contained" color="primary" startIcon={<SaveAltIcon />} onClick={(e) => this.saveClicked(e)}>Save</Button>
+        </Box>
 
       </div>
+      </Container>
     )
   }
 }
